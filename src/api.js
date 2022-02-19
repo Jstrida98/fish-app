@@ -14,9 +14,10 @@ const getFish = (length = 10) => fetch('https://www.fishwatch.gov/api/species')
 
     factsMap['Taste'] = fish['Taste'];
     factsMap['Source'] = fish['Source'];
-    factsMap['Scientific Name'] = `<p>${fish['Scientific Name']}</p>`;
-    factsMap['Physical Description'] = `<p>${fish['Physical Description']}</p>`;
-    factsMap['Health Benefits'] = `<p>${fish['Health Benefits']}</p>`;
+
+    addFact(fish, 'Scientific Name', factsMap);
+    addFact(fish, 'Physical Description', factsMap);
+    addFact(fish, 'Health Benefits', factsMap);
 
     //console.log('factsMap = ');
     //console.log(factsMap);
@@ -30,4 +31,9 @@ const getFish = (length = 10) => fetch('https://www.fishwatch.gov/api/species')
 })
 .catch((e) => console.log(e + ' and there was some kind of error'));
 
+function addFact(fish, property, factsMap) {
+  if (fish['Health Benefits']) {
+    factsMap['Health Benefits'] = `<p>${fish['Health Benefits']}</p>`;
+  }
+}
 export default getFish;

@@ -178,7 +178,7 @@ function App() {
             }
             {
               !selectedFish && 
-              <div>There is no selected fish</div>
+              <h2>There is no selected fish</h2>
             }
           </div>
         </div>
