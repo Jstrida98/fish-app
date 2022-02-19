@@ -20,7 +20,7 @@ function App() {
   const [fishIndex, setFishIndex] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
   const [indexInput, setIndexInput] = useState(0);
-  const maxApiResult = 100;
+  const maxApiResult = 15;
 
   const [theme, themeToggler, mountedComponent] = useDarkMode()
 
@@ -48,7 +48,9 @@ function App() {
 
 
   const getCurrentPages = () => {
-    const newArr = arr.slice(pageIndex, (pageIndex + 10));
+    // check for out of bounds
+    const endPage = (pageIndex + 10 > maxApiResult ? (maxApiResult) : pageIndex + 10)
+    const newArr = arr.slice(pageIndex, endPage);
     return newArr;
   }
 
