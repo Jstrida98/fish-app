@@ -48,9 +48,7 @@ function App() {
 
 
   const getCurrentPages = () => {
-    const newArr = arr.slice(pageIndex, (pageIndex + 10) % maxApiResult);
-    console.log('newArr =');
-    console.log(newArr);
+    const newArr = arr.slice(pageIndex, (pageIndex + 10));
     return newArr;
   }
 
@@ -59,7 +57,7 @@ function App() {
       const newRightIndex = (fishIndex + 1 >= maxApiResult ? 0 : fishIndex + 1);
       setFishIndex(newRightIndex)
       setIndexInput(newRightIndex)
-      if (newRightIndex % 10 === 0 && newRightIndex >= 10) {
+      if (newRightIndex % 10 === 0) {
         setPageIndex(newRightIndex);
       }
     } else {
@@ -91,7 +89,7 @@ function App() {
     const newIndex = maxApiResult-1;
     setFishIndex(newIndex);
     setIndexInput(newIndex)
-    setPageIndex(newIndex-10);
+    setPageIndex(newIndex-9);
   }
 
   const handleInputChange = (evt) => {
