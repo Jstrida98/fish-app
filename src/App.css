@@ -39,10 +39,12 @@
   display: flex;
   justify-content: space-between;
   margin: auto;
-  padding: 0px 45px
+  padding: 0px 60px
 }
 
 .buttons-row button {
+  border-radius: 15px;
+  box-shadow: 5px 5px 6px -1px;
   height: 70px;
   width: 70px;
   font-size: 40px;
@@ -56,7 +58,7 @@
   border: 1px solid #d1c0c0;
   font-size: 22px;
   padding: 25px 0 25px 0;
-  width: 925px;
+  width: 1150px;
   margin: 40px;
 }
 
@@ -72,11 +74,12 @@
 img {
   height: 600px;
   padding-bottom: 25px;
-  width: 800px;
+  width: 1000px;
 }
 
 .image-border {
   border: 1px solid #d1c0c0;
+  box-shadow: 5px 5px 6px -1px;
   margin: 15px;
   padding: 15px;
 }
@@ -99,6 +102,7 @@ img {
 }
 
 .search-bar input, button {
+  box-shadow: 3px 3px 6px -1px;
   font-size: 20px;
 }
 
@@ -122,7 +126,9 @@ img {
 }
 
 .fish-facts-container {
- /** border: 1px solid #d1c0c0 **/
+ border: 1px solid #d1c0c0;
+ box-shadow: 5px 5px 6px -1px;
+ margin: 25px 60px;
 }
 
 .fish-btn-tooltip {
@@ -134,11 +140,15 @@ img {
 }
 
 .pagination {
+  border: 1px dotted grey;
+  border-radius: 35px;
+  box-shadow: 5px 5px 6px -1px;
   display: flex;
   align-items: center;
+  padding: 0px 20px;
 }
 .pagination span+span {
-  margin-left: 22px;
+  margin-left: 15px;
 }
 
 .pagination-element {
@@ -218,6 +228,7 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
+  box-shadow: 5px 5px 6px -1px;
 }
 
 .slider.round:before {

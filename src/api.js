@@ -18,9 +18,7 @@ const getFish = (length = 10) => fetch('https://www.fishwatch.gov/api/species')
     addFact(fish, 'Scientific Name', factsMap);
     addFact(fish, 'Physical Description', factsMap);
     addFact(fish, 'Health Benefits', factsMap);
-
-    //console.log('factsMap = ');
-    //console.log(factsMap);
+    addFact(fish, 'Physical Description', factsMap);
 
     if (species && imageGal && !!imageGal.length) {
       const newFish = {species: species, img: speciesIllustrationPhoto.src, facts: factsMap};
@@ -32,8 +30,8 @@ const getFish = (length = 10) => fetch('https://www.fishwatch.gov/api/species')
 .catch((e) => console.log(e + ' and there was some kind of error'));
 
 function addFact(fish, property, factsMap) {
-  if (fish['Health Benefits']) {
-    factsMap['Health Benefits'] = `<p>${fish['Health Benefits']}</p>`;
+  if (fish[property]) {
+    factsMap[property] = `<p>${fish[property]}</p>`;
   }
 }
 export default getFish;

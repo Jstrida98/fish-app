@@ -4,10 +4,8 @@ import { lightTheme, darkTheme } from "./themes"
 import { GlobalStyles } from './globalStyles';
 import { useDarkMode } from './useDarkMode';
 import './App.css';
-import Toggle from './toggler'
+import DarkLightModeToggle from './toggler'
 import getFish from './api'
-import Brightness2 from '@material-ui/icons/Brightness2';
-import WbSunny from '@material-ui/icons/WbSunny';
 import Tooltip from "@material-ui/core/Tooltip"
 import { makeStyles } from '@material-ui/core/styles';
 import parse from 'html-react-parser'
@@ -20,7 +18,7 @@ function App() {
   const [fishIndex, setFishIndex] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
   const [indexInput, setIndexInput] = useState(0);
-  const maxApiResult = 15;
+  const maxApiResult = 20;
 
   const [theme, themeToggler, mountedComponent] = useDarkMode()
 
@@ -44,7 +42,11 @@ function App() {
     })
     .catch(e => console.log(e + ' and error'));
   
-  }, [fishIndex]);
+  }, []);
+
+  useEffect(() => { 
+    setSelectedFish(fish[fishIndex])
+  }, [fish,fishIndex]);
 
 
   const getCurrentPages = () => {
@@ -91,10 +93,15 @@ function App() {
     const newIndex = maxApiResult-1;
     setFishIndex(newIndex);
     setIndexInput(newIndex)
-    setPageIndex(newIndex-9);
+
+    console.log('newIndex = ' + newIndex + ' maxApiResult = ' + maxApiResult + ' pageIndex = ' + pageIndex);
+
+    
+    setPageIndex(newIndex-9 < 10 ? 10 : newIndex - 9);
   }
 
   const handleInputChange = (evt) => {
+    evt.preventDefault();
     const index = Number(evt.target.value) - 1;
     setIndexInput(index);
     console.log(evt.target.value);
@@ -121,15 +128,13 @@ function App() {
               <div>
               <div className="options">
                 <div className="dark-light-toggle">
-                  <WbSunny />
-                  <Toggle theme={theme} toggleTheme={themeToggler} />
-                  <Brightness2 />
+                  <DarkLightModeToggle theme={theme} toggleTheme={themeToggler} />
                 </div>
               </div>
                 <h2>{selectedFish.species}</h2>
                 <div className="search-bar">
                   <input onChange={(evt) => handleInputChange(evt)} type="text" value={indexInput+1} />
-                  <button onClick={() => handleInputSubmit()}>Go</button>
+                  <button type="submit" onClick={() => handleInputSubmit()}>Go</button>
                 </div>
               </div>
               <div>
@@ -146,7 +151,7 @@ function App() {
                   </div>
                   <div className="pagination">
                     {getCurrentPages().map((i) => {
-                      return <span className={`pagination-element ${i === fishIndex ? 'selected-page' : ''}`} onClick={() => handlePaginationClick(i)}>{`${i+1}`}</span>
+                      return <><span>{`${i % 10 > 0 ? '|' : ''}`}</span><span className={`pagination-element ${i === fishIndex ? 'selected-page' : ''}`} onClick={() => handlePaginationClick(i)}>{`${i+1}`}</span></>
                     })}
                   </div>
                   <div className="button-set">

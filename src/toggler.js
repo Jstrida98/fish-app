@@ -1,17 +1,23 @@
 import React from 'react'
+import Brightness2 from '@material-ui/icons/Brightness2';
+import WbSunny from '@material-ui/icons/WbSunny';
 import { func, string } from 'prop-types';
 
-const Toggle = ({theme,  toggleTheme }) => {
+const DarkLightModeToggle = ({theme,  toggleTheme }) => {
 
-    return (  
-        <label className="switch">
-          <input onChange={() => void 0} checked={theme === 'dark'} type="checkbox" />
-          <span onClick={() => toggleTheme()} className="slider round"></span>
-        </label>
+    return (
+        <>
+            <WbSunny />
+                <label className="switch">
+                    <input onChange={() => void 0} checked={theme === 'dark'} type="checkbox" />
+                    <span onClick={() => toggleTheme()} className="slider round"></span>
+                </label>
+            <Brightness2 />
+        </>
     );
 };
-Toggle.propTypes = {
+DarkLightModeToggle.propTypes = {
     theme: string.isRequired,
     toggleTheme: func.isRequired,
 }
-export default Toggle;
+export default DarkLightModeToggle;
